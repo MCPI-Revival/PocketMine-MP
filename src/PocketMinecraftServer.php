@@ -33,13 +33,19 @@ class PocketMinecraftServer{
 	private function load(){
 		$this->version = new VersionString();
 		console("[INFO] \x1b[33;1mPocketMine-MP ".MAJOR_VERSION." #".$this->version->getNumber()." by @shoghicp, LGPL License", true, true, 0);
-		console("[INFO] Target Minecraft PE: \x1b[36;1m".CURRENT_MINECRAFT_VERSION."\x1b[0m, protocol #".CURRENT_PROTOCOL, true, true, 0);
+		console("[INFO] Target Minecraft Pi: \x1b[36;1m" . CURRENT_MINECRAFT_VERSION . "\x1b[0m, protocol #" . CURRENT_PROTOCOL, true, true, 0);
 		if($this->version->isDev()){
 			console("[INFO] \x1b[31;1mThis is a Development version");
 		}
-		console("[INFO] Starting Minecraft PE Server at ".$this->serverip.":".$this->port);
-		if($this->port < 19132 or $this->port > 19135){ //Mojang =(
-			console("[WARNING] You've selected a not-standard port. Normal port range is from 19132 to 19135 included");
+		console("[INFO] Starting Minecraft Pi Server at ".$this->serverip.":".$this->port);
+		// Well, we almost solved this with ModPi.
+		if ($this->port < 19132 or $this->port > 19135)
+		{
+			console("[NOTICE] You've selected a non-standard port. Normal port range is from 19132 to 19135 included");
+		}
+		if ($this->port < 19132 or $this->port > 19139)
+		{
+			console("[WARNING] You've selected a port out of the ModPi range. ModPi port range is from 19132 to 19139 included");
 		}
 		$this->serverID = $this->serverID === false ? Utils::readLong(Utils::getRandomBytes(8, false)):$this->serverID;
 		$this->seed = $this->seed === false ? Utils::readInt(Utils::getRandomBytes(4, false)):$this->seed;
@@ -82,10 +88,10 @@ class PocketMinecraftServer{
 	}
 
 	function __construct($name, $gamemode = CREATIVE, $seed = false, $port = 19132, $serverID = false, $serverip = "0.0.0.0"){
-		$this->port = (int) $port; //19132 - 19135
-		$this->gamemode = (int) $gamemode;
+		$this->port = (int)$port; // 19132 - 19139
+		$this->gamemode = (int)$gamemode;
 		$this->name = $name;
-		$this->motd = "Welcome to ".$name;
+		$this->motd = "Welcome to " . $name;
 		$this->serverID = $serverID;
 		$this->seed = $seed;
 		$this->serverip = $serverip;

@@ -87,6 +87,7 @@ define("MC_CONTAINER_SET_SLOT", 0xb0);
 define("MC_CLIENT_MESSAGE", 0xb4);
 define("MC_SIGN_UPDATE", 0xb5);
 define("MC_ADVENTURE_SETTINGS", 0xb6);
+define("MP_MODPI_DUMB", 0xb8);
 
 
 class Protocol{
@@ -154,6 +155,7 @@ class Protocol{
 		MC_CLIENT_MESSAGE => "Client Message",
 		MC_SIGN_UPDATE => "Sign Update",
 		MC_ADVENTURE_SETTINGS => "Adventure Settings",
+		MP_MODPI_DUMB => "ModPi Command Packet"
 	);
 	
 	public static $packetName = array(

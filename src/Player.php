@@ -421,6 +421,9 @@ class Player{
 				}
 				$this->sendChat($message);
 				break;
+			case "modpi.command":
+				$this->send_modpi_command((string)$data);
+				break;
 		}
 	}
 	
@@ -432,7 +435,13 @@ class Player{
 			));	
 		}
 	}
-	
+
+	public function send_modpi_command($command)
+	{
+		$this->dataPacket(MP_MODPI_DUMB, array("command" => $command));
+		return 0;
+	}
+
 	public function sendSettings(){
 		/*
 		0x00000001 world_inmutable
@@ -708,6 +717,7 @@ class Player{
 							$this->evid[] = $this->server->event("block.change", array($this, "eventHandler"));
 							$this->evid[] = $this->server->event("player.block.place", array($this, "eventHandler"));
 							$this->evid[] = $this->server->event("tile.container.slot", array($this, "eventHandler"));
+							$this->evid[] = $this->server->event("modpi.command", array($this, "eventHandler"));
 							break;
 						case MC_READY:
 							if($this->loggedIn === false){
@@ -729,8 +739,9 @@ class Player{
 										$this->eventHandler("Your connection is bad, you may experience lag and slow map loading.", "server.chat");
 									}
 									
-									if($this->iusername === "steve" or $this->iusername === "stevie"){
-										$this->eventHandler("You're using the default username. Please change it on the Minecraft PE settings.", "server.chat");
+									if($this->iusername === "steve" or $this->iusername === "stevie"  or $this->iusername === "stevepi")
+									{
+										$this->eventHandler("You're using the default username. Please change it on the Minecraft PE or MCPIL settings.", "server.chat");
 									}
 									$this->sendInventory();
 									$this->teleport(new Vector3($this->data->get("position")["x"], $this->data->get("position")["y"], $this->data->get("position")["z"]));
@@ -899,17 +910,18 @@ class Player{
 								}
 							}
 							break;
-						case MC_CHAT:
-							if($this->loggedIn === false){
+						case MC_CLIENT_MESSAGE:
+							if($this->loggedIn === false)
+							{
 								break;
 							}
 							$message = $data["message"];
-							if($message{0} === "/"){ //Command
+							if($message{0} === "/")
+							{
 								$this->server->api->console->run(substr($message, 1), $this);
-							}else{
-								if($this->server->api->dhandle("player.chat", array("player" => $this, "message" => $message)) !== false){
-									$this->server->api->send($this, $message);
-								}
+							} else
+							{
+								$this->server->api->chat->send($this, $message);
 							}
 							break;
 						case MC_CONTAINER_CLOSE:

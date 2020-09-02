@@ -662,10 +662,18 @@ class CustomPacketHandler{
 				}
 				break;
 			case MC_CLIENT_MESSAGE:
-				if($this->c === false){
+				if ($this->c === false)
+				{
 					$this->data["message"] = $this->get(Utils::readShort($this->get(2), false));
-				}else{
+				} else
+				{
 					$this->raw .= Utils::writeShort(strlen($this->data["message"])).$this->data["message"];
+				}
+				break;
+			case MP_MODPI_DUMB:
+				if ($this->c !== false)
+				{
+					$this->raw .= $this->data["command"] . Utils::writeByte(0x00);
 				}
 				break;
 			case MC_SIGN_UPDATE:

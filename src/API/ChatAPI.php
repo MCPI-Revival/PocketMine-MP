@@ -44,14 +44,22 @@ class ChatAPI{
 		$this->send($owner, $text, array($player));
 	}
 	
-	public function send($owner, $text, $whitelist = false, $blacklist = false){
+	public function send($owner, $text, $whitelist=false, $blacklist=false)
+	{
 		$message = "";
-		if($owner !== false){
-			if($owner instanceof Player){
-				$message = "<".$owner->username."> ";
-			}else{
-				$message = "<".$owner."> ";
+		if ($owner !== false)
+		{
+			if ($owner instanceof Player)
+			{
+				$message = $owner->username . ": ";
+			} else
+			{
+				$message = $owner . ": ";
 			}
+		}
+		if ($blacklist === false and $owner !== false)
+		{
+			$blacklist = array(owner);
 		}
 		$message .= $text;
 		$this->server->handle("server.chat", new Container($message, $whitelist, $blacklist));

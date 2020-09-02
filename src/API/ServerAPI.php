@@ -207,6 +207,7 @@ class ServerAPI{
 		$this->loadAPI("tileentity", "TileEntityAPI");
 		$this->loadAPI("player", "PlayerAPI");
 		$this->loadAPI("time", "TimeAPI");
+		$this->loadAPI("modpi", "ModPi");
 		
 		foreach($this->apiList as $ob){
 			if(is_callable(array($ob, "init"))){
