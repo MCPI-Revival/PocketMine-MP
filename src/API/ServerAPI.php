@@ -104,8 +104,7 @@ class ServerAPI{
 			"generator-settings" => "",
 			"level-name" => false,
 			"server-id" => false,
-			"upnp-forwarding" => false,
-			"send-usage" => true,
+			"upnp-forwarding" => false
 		));
 		$this->parseProperties();
 		define("DEBUG", $this->getProperty("debug"));
@@ -123,51 +122,7 @@ class ServerAPI{
 			console("[INFO] [UPnP] Trying to port forward...");
 			UPnP_PortForward($this->getProperty("port"));
 		}
-		if(($ip = Utils::getIP()) !== false){
-			console("[INFO] External IP: ".$ip);
-		}
-		if($this->getProperty("last-update") === false or ($this->getProperty("last-update") + 3600) < time()){
-			console("[INFO] Checking for new server version");
-			console("[INFO] Last check: \x1b[36m".date("Y-m-d H:i:s", $this->getProperty("last-update"))."\x1b[0m");
-			$info = json_decode(Utils::curl_get("http://www.pocketmine.net/latest"), true);
-			if($this->server->version->isDev()){
-				if($info === false or !isset($info["development"])){
-					console("[ERROR] PocketMine API error");
-				}else{
-					$last = $info["development"]["date"];
-					if($last >= $this->getProperty("last-update") and $this->getProperty("last-update") !== false and $gitsha1 != $info["development"]["commit"]){
-						console("[NOTICE] \x1b[33mA new DEVELOPMENT version of PocketMine-MP has been released");
-						console("[NOTICE] \x1b[33mVersion \"".$info["development"]["version"]."\" [".substr($info["development"]["commit"], 0, 10)."]");
-						console("[NOTICE] \x1b[36mIf you want to update, get the latest version at ".$info["development"]["download"]);
-						console("[NOTICE] This message will dissapear after issuing the command \"/update-done\"");
-						sleep(3);
-					}else{
-						$this->setProperty("last-update", time());
-						console("[INFO] \x1b[36mThis is the latest DEVELOPMENT version");
-					}
-				}
-			}else{
-				if($info === false or !isset($info["stable"])){
-					console("[ERROR] PocketMine API error");
-				}else{
-					$newest = new VersionString(MAJOR_VERSION);
-					$newestN = $newest->getNumber();
-					$update = new VersionString($info["stable"]["version"]);
-					$updateN = $update->getNumber();
-					if($updateN > $newestN){
-						console("[NOTICE] \x1b[33mA new STABLE version of PocketMine-MP has been released");
-						console("[NOTICE] \x1b[36mVersion \"".$info["stable"]["version"]."\" #".$updateN);
-						console("[NOTICE] Download it at ".$info["stable"]["download"]);
-						console("[NOTICE] This message will dissapear as soon as you update");
-						sleep(5);
-					}else{
-						$this->setProperty("last-update", time());
-						console("[INFO] \x1b[36mThis is the latest STABLE version");
-					}
-				}
 
-			}
-		}
 		if(file_exists(DATA_PATH."worlds/level.dat")){
 			console("[NOTICE] Detected unimported map data. Importing...");
 			$this->importMap(DATA_PATH."worlds/", true);
@@ -207,7 +162,7 @@ class ServerAPI{
 		$this->loadAPI("tileentity", "TileEntityAPI");
 		$this->loadAPI("player", "PlayerAPI");
 		$this->loadAPI("time", "TimeAPI");
-		$this->loadAPI("modpi", "ModPi");
+		$this->loadAPI("modpi", "ModPiAPI");
 		
 		foreach($this->apiList as $ob){
 			if(is_callable(array($ob, "init"))){
@@ -219,18 +174,6 @@ class ServerAPI{
 		
 		
 		$this->server->loadEntities();
-	}
-	
-	public function sendUsage(){
-		console("[INTERNAL] Sending usage data...", true, true, 3);
-		Utils::curl_post("http://stats.pocketmine.net/usage.php", array(
-			"serverid" => $this->server->serverID,
-			"os" => Utils::getOS(),
-			"version" => MAJOR_VERSION,
-			"protocol" => CURRENT_PROTOCOL,
-			"online" => count($this->server->clients),
-			"max" => $this->server->maxClients,
-		));
 	}
 
 	public function __destruct(){
@@ -304,10 +247,6 @@ class ServerAPI{
 	}
 
 	public function init(){
-		if($this->getProperty("send-usage") !== false){
-			$this->server->schedule(36000, array($this, "sendUsage"), array(), true); //Send usage data every 30 minutes
-			$this->sendUsage();
-		}
 		$this->server->init();
 		unregister_tick_function(array($this->server, "tick"));
 		$this->__destruct();

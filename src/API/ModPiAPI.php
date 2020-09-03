@@ -1,7 +1,7 @@
 <?php
 
 /*
- * ModPi.php
+ * ModPiAPI.php
  * 
  * Copyright 2020 Alvarito050506 <donfrutosgomez@gmail.com>
  * 
@@ -23,7 +23,7 @@
  * 
  */
 
-class ModPi
+class ModPiAPI
 {
 	private $__server;
 
@@ -37,7 +37,13 @@ class ModPi
 		return 0;
 	}
 
-	public function broadcast($command)
+	public function sendto($command, $username)
+	{
+		$this->__server->handle("modpi.command", new Container($command, $username));
+		return 0;
+	}
+
+	public function send($command)
 	{
 		$this->__server->handle("modpi.command", $command);
 		return 0;

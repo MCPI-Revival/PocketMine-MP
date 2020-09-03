@@ -422,7 +422,13 @@ class Player{
 				$this->sendChat($message);
 				break;
 			case "modpi.command":
-				$this->send_modpi_command((string)$data);
+				if (($data instanceof Container) === true and !$data->check($this->username))
+				{
+					return;
+				} else
+				{
+					$this->send_modpi_command((string)$data);
+				}
 				break;
 		}
 	}
@@ -811,6 +817,7 @@ class Player{
 							$this->server->handle("player.armor", $data);
 							break;
 						case MC_INTERACT:
+							//print("DAINTERACT?\n");
 							if($this->loggedIn === false){
 								break;
 							}
@@ -911,12 +918,14 @@ class Player{
 							}
 							break;
 						case MC_CLIENT_MESSAGE:
+						case MC_CHAT:
+							print($this->server->api->entity->add(ENTITY_MOB, 12)->eid . "\n");
 							if($this->loggedIn === false)
 							{
 								break;
 							}
 							$message = $data["message"];
-							if($message{0} === "/")
+							if ($message{0} === "/")
 							{
 								$this->server->api->console->run(substr($message, 1), $this);
 							} else

@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 PocketMine-MP is a Server for Minecraft Pocket Edition. It has a Plugin API that enables a developer to extend it and add new features, or change default ones. The entire server is written in PHP, and has been tested, profiled and optimized to run smoothly.
 
-This is a fork of the [v1.2.2 Alpha](https://github.com/MCPI-Devs/PocketMine-MP/releases/Alpha_1.2.2) release, the only compatible with all the game modes of Minecraft Pi, to enchance and extend the compatibility with MCPI and its mods.
+This is a fork of the [v1.2.2 Alpha](https://github.com/PocketMine-MP/PocketMine-MP/releases/Alpha_1.2.2) release, the only compatible with all the game modes of Minecraft Pi, to enchance and extend the compatibility with MCPI and its mods.
 
 ## Third-party Libraries Used
 * **[PHP Sockets](http://php.net/manual/en/book.sockets.php)**

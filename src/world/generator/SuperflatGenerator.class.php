@@ -34,7 +34,7 @@ class SuperflatGenerator{
 			"spawn-surface" => 24,
 			"spawn-radius" => 10,
 			"torches" => 0,
-			"seed" => (int) $seed,
+			"seed" => (int)$seed,
 		);
 		$this->parsePreset();
 	}

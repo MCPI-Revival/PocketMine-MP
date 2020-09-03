@@ -304,6 +304,7 @@ class PocketMinecraftServer{
 			}else{
 				$this->map->loadMap();
 			}
+			console("[INFO] Loaded?");
 		}else{
 			console("[INFO] Time: \x1b[36m".$this->time."\x1b[0m");
 			console("[INFO] Seed: \x1b[36m".$this->seed."\x1b[0m");
@@ -363,7 +364,7 @@ class PocketMinecraftServer{
 				}
 				$t = $this->api->tileentity->add($tile["id"], $tile["x"], $tile["y"], $tile["z"], $tile);
 			}
-			$this->action(1000000 * 60 * 25, '$this->api->chat->broadcast("Forcing save...");$this->save();');
+			$this->action(1000000 * 60 * 25, "\$this->api->chat->broadcast(\"Forcing save...\");\$this->save();");
 		}
 	}
 

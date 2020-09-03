@@ -97,9 +97,9 @@ class Entity extends stdClass{
 		$this->name = "";
 		$this->tickCounter = 0;
 		$this->server->query("INSERT OR REPLACE INTO entities (EID, type, class, health) VALUES (".$this->eid.", ".$this->type.", ".$this->class.", ".$this->health.");");
-		$this->x = isset($this->data["x"]) ? $this->data["x"]:0;
-		$this->y = isset($this->data["y"]) ? $this->data["y"]:0;
-		$this->z = isset($this->data["z"]) ? $this->data["z"]:0;
+		$this->x = isset($this->data["x"]) ? $this->data["x"]:12;
+		$this->y = isset($this->data["y"]) ? $this->data["y"]:12;
+		$this->z = isset($this->data["z"]) ? $this->data["z"]:12;
 		$this->speedX = /*isset($this->data["speedX"]) ? $this->data["speedX"]:*/0;
 		$this->speedY = /*isset($this->data["speedY"]) ? $this->data["speedY"]:*/0;
 		$this->speedZ = /*isset($this->data["speedZ"]) ? $this->data["speedZ"]:*/0;
