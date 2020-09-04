@@ -159,6 +159,7 @@ class Protocol{
 	);
 	
 	public static $packetName = array(
+		0x01 => "ID_CONNECTED_PING_OPEN_CONNECTIONS", //RakNet
 		0x02 => "ID_UNCONNECTED_PING_OPEN_CONNECTIONS", //RakNet
 		0x05 => "ID_OPEN_CONNECTION_REQUEST_1", //RakNet
 		0x06 => "ID_OPEN_CONNECTION_REPLY_1", //RakNet
@@ -176,6 +177,11 @@ class Protocol{
 	);
 	
 	public static $raknet = array(
+		0x01 => array(
+			"long", //Ping ID
+			"magic",
+		),
+
 		0x02 => array(
 			"long", //Ping ID
 			"magic",
