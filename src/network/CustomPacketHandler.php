@@ -70,14 +70,27 @@ class CustomPacketHandler{
 				}
 				break;
 			case MC_CLIENT_CONNECT:
-				if($this->c === false){
+				if ($this->c === false)
+				{
 					$this->data["clientID"] = Utils::readLong($this->get(8));
 					$this->data["session"] = Utils::readLong($this->get(8));
 					$this->data["unknown2"] = $this->get(1);
-				}else{
+					if ($this->data["unknown2"] != 0x00)
+					{
+						$this->data["secret"] = Utils::readInt($this->get(4));
+					} else
+					{
+						$this->data["secret"] = NULL;
+					}
+				} else
+				{
 					$this->raw .= Utils::writeLong($this->data["clientID"]);
 					$this->raw .= Utils::writeLong($this->data["session"]);
-					$this->raw .= "\x00";
+					$this->raw .= $this->data["unknown2"];
+					if ($this->data["unknown2"] != 0x00)
+					{
+						$this->raw .= Utils::writeLong($this->data["secret"]);
+					}
 				}
 				break;
 			case MC_SERVER_HANDSHAKE:

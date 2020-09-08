@@ -61,7 +61,8 @@ class BanAPI{
 		$this->cmdWhitelist[strtolower(trim($cmd))] = true;
 	}
 	
-	public function isOp($username){
+	public function isOp($username)
+	{
 		if($this->server->api->dhandle("op.check", $username) === true){
 			return true;
 		}elseif($this->ops->exists($username)){
@@ -100,24 +101,24 @@ class BanAPI{
 				$output .= "Command ran as ".$player->username.".\n";
 				break;
 			case "op":
-				$user = strtolower($params[0]);
-				if($user == ""){
+				$username = strtolower($params[0]);
+				if ($username == "")
+				{
 					break;
 				}
-				$this->ops->set($user);
+				$player = $this->server->api->player->get($username);
+				if (!($player instanceof Player) || $player->secret == NULL)
+				{
+					$output .= "Player not connected or missing secret.\n";
+					break;
+				}
+				$this->ops->set(sprintf("%u", $player->secret));
 				$this->ops->save();
-				$output .= $user." is now op\n";
-				$this->server->api->chat->sendTo(false, "You are now op.", $user);
+				$output .= $username . " is now op\n";
+				$this->server->api->chat->sendTo(false, "You are now op.", $username);
 				break;
 			case "deop":
-				$user = strtolower($params[0]);
-				if($user == ""){
-					break;
-				}
-				$this->ops->remove($user);
-				$this->ops->save();
-				$output .= $user." is not longer op\n";
-				$this->server->api->chat->sendTo(false, "You are not longer op.", $user);
+				/* Work In Progress. */
 				break;
 			case "kick":
 				if(!isset($params[0])){

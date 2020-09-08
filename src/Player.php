@@ -59,6 +59,7 @@ class Player{
 	public $windows = array();
 	private $chunksLoaded = array();
 	private $chunksOrder = array();
+	public $secret = NULL;
 	
 	function __construct(PocketMinecraftServer $server, $clientID, $ip, $port, $MTU){
 		$this->MTU = $MTU;
@@ -628,9 +629,11 @@ class Player{
 							$this->close("client disconnect");
 							break;
 						case MC_CLIENT_CONNECT:
-							if($this->loggedIn === true){
+							if ($this->loggedIn === true)
+							{
 								break;
 							}
+							$this->secret = $data["secret"];
 							$this->dataPacket(MC_SERVER_HANDSHAKE, array(
 								"port" => $this->port,
 								"session" => $data["session"],
@@ -817,7 +820,6 @@ class Player{
 							$this->server->handle("player.armor", $data);
 							break;
 						case MC_INTERACT:
-							//print("DAINTERACT?\n");
 							if($this->loggedIn === false){
 								break;
 							}
@@ -919,7 +921,6 @@ class Player{
 							break;
 						case MC_CLIENT_MESSAGE:
 						case MC_CHAT:
-							print($this->server->api->entity->add(ENTITY_MOB, 12)->eid . "\n");
 							if($this->loggedIn === false)
 							{
 								break;

@@ -23,6 +23,19 @@ PocketMine-MP is a Server for Minecraft Pocket Edition. It has a Plugin API that
 
 This is a fork of the [v1.2.2 Alpha](https://github.com/PocketMine-MP/PocketMine-MP/releases/Alpha_1.2.2) release, the only compatible with all the game modes of Minecraft Pi, to enchance and extend the compatibility with MCPI and its mods.
 
+## Supported extensions
+The following is a list of supported extensions to the Minecraft Pi protocol, provided by the ModPi API.
+
+### Command Packet
+An encapsulated packet that contains one or more MCPI API commands. When is sent to a client, ModPi executes its content.
+
+### Client Secrets
+When the last byte (`"unknown2"` field) of a normal Client Connect (`0x09`) packet is not `NULL`, it means that the client is sending a "secret", a 32-bit random and persistent number. This, plus the username, could be used to identify client stronger. However, this currently does not provide any real security, but there are plans to improve it.
+
+If a secret is sent, it will be stored in the `Player`'s `secret` property.
+
+**Do you have an idea for an extension?** Pull Request and Issues are welcome! ~~And sorry for this bad documentation.~~
+
 ## Third-party Libraries Used
 * **[PHP Sockets](http://php.net/manual/en/book.sockets.php)**
 * **[PHP SQLite3](http://php.net/manual/en/book.sqlite3.php)**
