@@ -1,5 +1,4 @@
 # PocketMine-MP
-
 ![](http://shoghicp.github.com/PocketMine-MP/favicon.png)
 
 A Minecraft Pi enchanced compatibility branch.
@@ -17,7 +16,7 @@ GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-```	
+```
 
 PocketMine-MP is a Server for Minecraft Pocket Edition. It has a Plugin API that enables a developer to extend it and add new features, or change default ones. The entire server is written in PHP, and has been tested, profiled and optimized to run smoothly.
 
@@ -34,7 +33,9 @@ When the last byte (`"unknown2"` field) of a normal Client Connect (`0x09`) pack
 
 If a secret is sent, it will be stored in the `Player`'s `secret` property.
 
-**Do you have an idea for an extension?** Pull Request and Issues are welcome! ~~And sorry for this bad documentation.~~ You can help improve this documentation by contribution to the README.md file!
+**Do you have an idea for an extension?** Pull Request and Issues are welcome! ~~And sorry for this bad documentation.~~
+
+You can also help to improve this documentation by contribution to the README.md file!
 
 ## Third-party Libraries Used
 * **[PHP Sockets](http://php.net/manual/en/book.sockets.php)**
