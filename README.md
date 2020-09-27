@@ -1,8 +1,8 @@
-![](http://shoghicp.github.com/PocketMine-MP/favicon.png)
-
 # PocketMine-MP
 
-Minecraft Pi enchanced compatibility branch.
+![](http://shoghicp.github.com/PocketMine-MP/favicon.png)
+
+A Minecraft Pi enchanced compatibility branch.
 
 ```
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ When the last byte (`"unknown2"` field) of a normal Client Connect (`0x09`) pack
 
 If a secret is sent, it will be stored in the `Player`'s `secret` property.
 
-**Do you have an idea for an extension?** Pull Request and Issues are welcome! ~~And sorry for this bad documentation.~~
+**Do you have an idea for an extension?** Pull Request and Issues are welcome! ~~And sorry for this bad documentation.~~ You can help improve this documentation by contribution to the README.md file!
 
 ## Third-party Libraries Used
 * **[PHP Sockets](http://php.net/manual/en/book.sockets.php)**
