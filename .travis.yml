@@ -1,0 +1,19 @@
+language: php
+
+php:
+ - 5.4
+  
+before_script:
+ - pecl install channel://pecl.php.net/pthreads-0.0.42
+ - git clone --depth=100 --quiet --branch=tests git://github.com/shoghicp/PocketMine-MP.git $(pwd)/tests/
+
+script:
+ - phpunit tests/
+ 
+notifications:
+ email: false
+ irc: 
+  channels:
+   - "irc.freenode.org#mcpedevs"
+  template:
+   - "PocketMine-MP #%{build_number} %{commit}: %{message} (%{build_url})"
