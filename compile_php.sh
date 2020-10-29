@@ -1,10 +1,10 @@
 #!/bin/bash
 COMPILER_VERSION="0.10"
 
-PHP_VERSION="5.4.13"
+PHP_VERSION="5.6.40"
 ZEND_VM="GOTO"
 
-ZLIB_VERSION="1.2.8"
+ZLIB_VERSION="1.2.11"
 GMP_VERSION="5.1.1"
 PTHREADS_VERSION="0d5df071231478ff3b1982eb2b0d96cc24e39d9a"
 CURL_VERSION="curl-7_29_0"
@@ -31,7 +31,7 @@ set -e
 
 #PHP 5
 echo -n "[PHP] downloading $PHP_VERSION..."
-wget http://php.net/get/php-$PHP_VERSION.tar.gz/from/this/mirror -q -O - | tar -zx >> "$DIR/install.log" 2>&1
+wget https://www.php.net/distributions/php-$PHP_VERSION.tar.gz -q -O - | tar -zx >> "$DIR/install.log" 2>&1
 mv php-$PHP_VERSION php
 echo " done!"
 
