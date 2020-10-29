@@ -42,7 +42,7 @@ class Utils extends Thread{
 	}
 	
 	public static function isOnline(){
-		return (checkdnsrr("google.com", "ANY") && checkdnsrr("yahoo.com", "ANY") && checkdnsrr("microsoft.com", "ANY"));
+		return (checkdnsrr("google.com.", "A") && checkdnsrr("yahoo.com.", "A") && checkdnsrr("microsoft.com.", "A"));
 	}
 	
 	public static function getIP(){

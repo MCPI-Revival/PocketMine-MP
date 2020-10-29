@@ -126,7 +126,7 @@ class ServerAPI{
 		if(($ip = Utils::getIP()) !== false){
 			console("[INFO] External IP: ".$ip);
 		}
-		if($this->getProperty("last-update") === false or ($this->getProperty("last-update") + 3600) < time()){
+		/*if($this->getProperty("last-update") === false or ($this->getProperty("last-update") + 3600) < time()){
 			console("[INFO] Checking for new server version");
 			console("[INFO] Last check: \x1b[36m".date("Y-m-d H:i:s", $this->getProperty("last-update"))."\x1b[0m");
 			$info = json_decode(Utils::curl_get("http://www.pocketmine.net/latest"), true);
@@ -167,7 +167,7 @@ class ServerAPI{
 				}
 
 			}
-		}
+		}*/
 		if(file_exists(DATA_PATH."worlds/level.dat")){
 			console("[NOTICE] Detected unimported map data. Importing...");
 			$this->importMap(DATA_PATH."worlds/", true);
