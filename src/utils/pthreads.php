@@ -22,7 +22,7 @@
 define("ASYNC_CURL_GET", 1);
 define("ASYNC_CURL_POST", 2);
 
-class StackableArray extends Stackable{
+class StackableArray extends Threaded{
 	public function __construct(){
 		foreach(func_get_args() as $n => $value){
 			if(is_array($value)){
@@ -56,9 +56,9 @@ class AsyncMultipleQueue extends Thread{
 			return $len;
 		}
 		$offset = 0;
-		while(!isset($str{$len - 1})){
-			if(isset($this->input{$offset})){
-				$str .= $this->input{$offset};
+		while(!isset($str[$len - 1])){
+			if(isset($this->input[$offset])){
+				$str .= $this->input[$offset];
 				++$offset;
 			}
 		}
@@ -68,7 +68,7 @@ class AsyncMultipleQueue extends Thread{
 	
 	public function run(){
 		while($this->stop === false){
-			if(isset($this->input{5})){ //len 6 min
+			if(isset($this->input[5])){ //len 6 min
 				$rID = Utils::readInt($this->get(4));
 				switch(Utils::readShort($this->get(2), false)){
 					case ASYNC_CURL_GET:
@@ -76,9 +76,9 @@ class AsyncMultipleQueue extends Thread{
 						$timeout = Utils::readShort($this->get(2));
 						
 						$res = (string) Utils::curl_get($url, $timeout);
-						$this->lock();
-						$this->output .= Utils::writeInt($rID).Utils::writeShort(ASYNC_CURL_GET).Utils::writeInt(strlen($res)).$res;
-						$this->unlock();
+						$this->synchronized(function($thread){
+							$thread->output .= Utils::writeInt($rID).Utils::writeShort(ASYNC_CURL_GET).Utils::writeInt(strlen($res)).$res;
+						}, $this);
 						break;
 					case ASYNC_CURL_POST:
 						$url = $this->get(Utils::readShort($this->get(2), false));
@@ -90,9 +90,9 @@ class AsyncMultipleQueue extends Thread{
 							$d[$key] = $this->get(Utils::readInt($this->get(4), false));
 						}
 						$res = (string) Utils::curl_post($url, $d, $timeout);
-						$this->lock();
-						$this->output .= Utils::writeInt($rID).Utils::writeShort(ASYNC_CURL_POST).Utils::writeInt(strlen($res)).$res;
-						$this->unlock();
+						$this->synchronized(function($thread){
+							$thread->output .= Utils::writeInt($rID).Utils::writeShort(ASYNC_CURL_POST).Utils::writeInt(strlen($res)).$res;
+						}, $this);
 						break;
 				}
 			}

@@ -48,7 +48,7 @@ class Java_String{
 			trigger_error("Undefined offset $index", E_USER_WARNING);
 			return false;
 		}
-		return $this->value{$index};
+		return $this->value[$index];
 	}
 
 	public function hashCode(){

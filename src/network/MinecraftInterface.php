@@ -54,7 +54,7 @@ class MinecraftInterface{
 	}
 	
 	private function parsePacket($buffer, $source, $port){
-		$pid = ord($buffer{0});
+		$pid = ord($buffer[0]);
 
 		if(RakNetInfo::isValid($pid)){
 			$parser = new RakNetParser($buffer);
@@ -67,7 +67,7 @@ class MinecraftInterface{
 				return $parser->packet;
 			}
 			return false;
-		}elseif($pid === 0xfe and $buffer{1} === "\xfd" and ServerAPI::request()->api->query instanceof QueryHandler){
+		}elseif($pid === 0xfe and $buffer[1] === "\xfd" and ServerAPI::request()->api->query instanceof QueryHandler){
 			$packet = new QueryPacket;
 			$packet->ip = $source;
 			$packet->port = $port;

@@ -297,9 +297,9 @@ class PlayerAPI{
         $player = $this->get($name);
         if(($player instanceof Player) and ($player->entity instanceof Entity)){
             $name = $player->username;
-            $x = $x{0} === "~" ? $player->entity->x + floatval(substr($x, 1)):floatval($x);
-            $y = $y{0} === "~" ? $player->entity->y + floatval(substr($y, 1)):floatval($y);
-            $z = $z{0} === "~" ? $player->entity->z + floatval(substr($z, 1)):floatval($z);
+            $x = $x[0] === "~" ? $player->entity->x + floatval(substr($x, 1)):floatval($x);
+            $y = $y[0] === "~" ? $player->entity->y + floatval(substr($y, 1)):floatval($y);
+            $z = $z[0] === "~" ? $player->entity->z + floatval(substr($z, 1)):floatval($z);
             $player->teleport(new Vector3($x, $y, $z));
             return true;
         }

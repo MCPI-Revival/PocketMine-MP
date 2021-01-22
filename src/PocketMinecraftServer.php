@@ -244,7 +244,7 @@ class PocketMinecraftServer{
 		if(defined("NO_THREADS")){
 			return false;
 		}
-		if(isset($this->asyncThread->output{5})){
+		if(isset($this->asyncThread->output[5])){
 			$offset = 0;
 			$ID = Utils::readInt(substr($this->asyncThread->output, $offset, 4));
 			$offset += 4;

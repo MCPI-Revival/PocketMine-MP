@@ -201,7 +201,7 @@ class PluginAPI extends stdClass{
 	private function loadAll(){
 		$dir = dir($this->pluginsPath());
 		while(false !== ($file = $dir->read())){
-			if($file{0} !== "."){
+			if($file[0] !== "."){
 				$ext = strtolower(substr($file, -3));
 				if($ext === "php" or $ext === "pmf"){
 					$this->load($dir->path . $file);

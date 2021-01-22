@@ -49,7 +49,6 @@ class ConsoleAPI{
 			$this->loop->notify();
 			//@fclose($this->loop->fp);
 			usleep(50000);
-			$this->loop->kill();
 			//$this->loop->join();
 		}
 	}
@@ -186,7 +185,7 @@ class ConsoleAPI{
 			if(preg_match_all('#@([@a-z]{1,})#', $params, $matches, PREG_OFFSET_CAPTURE) > 0){
 				$offsetshift = 0;
 				foreach($matches[1] as $selector){
-					if($selector[0]{0} === "@"){ //Escape!
+					if($selector[0][0] === "@"){ //Escape!
 						$params = substr_replace($params, $selector[0], $selector[1] + $offsetshift - 1, strlen($selector[0]) + 1);
 						--$offsetshift;
 						continue;
@@ -279,11 +278,9 @@ class ConsoleAPI{
 					console("[CMD] ".$m);	
 				}
 			}
-		}else{
-			$this->loop->notify();
 		}
+		$this->loop->notify();
 	}
-
 }
 
 class ConsoleLoop extends Thread{
@@ -321,7 +318,9 @@ class ConsoleLoop extends Thread{
 
 		while($this->stop === false){
 			$this->line = $this->readLine();
-			$this->wait();
+			$this->synchronized(function($thread){
+				$this->wait();
+			}, $this);
 			$this->line = false;
 		}
 

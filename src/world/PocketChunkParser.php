@@ -58,14 +58,14 @@ class PocketChunkParser{
 			$this->raw = file_get_contents($file);
 		}
 		$this->file = $file;
-		$this->chunkLength = $this->sectorLength * ord($this->raw{0});
+		$this->chunkLength = $this->sectorLength * ord($this->raw[0]);
 		return true;
 	}
 
 	public function loadRaw($raw, $file){
 		$this->file = $file;
 		$this->raw = $raw;
-		$this->chunkLength = $this->sectorLength * ord($this->raw{0});
+		$this->chunkLength = $this->sectorLength * ord($this->raw[0]);
 		return true;
 	}
 
@@ -161,7 +161,7 @@ class PocketChunkParser{
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
 		for($y = 127; $y <= 0; --$y){
-			if($this->map[$X][$Z][0][$index]{$y} !== "\x00"){
+			if($this->map[$X][$Z][0][$index][$y] !== "\x00"){
 				break;
 			}
 		}
@@ -177,8 +177,8 @@ class PocketChunkParser{
 		$aX = $x - ($X << 4);
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
-		$block = ord($this->map[$X][$Z][0][$index]{$y});
-		$meta = ord($this->map[$X][$Z][1][$index]{$y >> 1});
+		$block = ord($this->map[$X][$Z][0][$index][$y]);
+		$meta = ord($this->map[$X][$Z][1][$index][$y >> 1]);
 		if(($y & 1) === 0){
 			$meta = $meta & 0x0F;
 		}else{
@@ -201,14 +201,14 @@ class PocketChunkParser{
 		$aX = $x - ($X << 4);
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
-		$this->map[$X][$Z][0][$index]{$y} = chr($block);
-		$old_meta = ord($this->map[$X][$Z][1][$index]{$y >> 1});
+		$this->map[$X][$Z][0][$index][$y] = chr($block);
+		$old_meta = ord($this->map[$X][$Z][1][$index][$y >> 1]);
 		if(($y & 1) === 0){
 			$meta = ($old_meta & 0xF0) | ($meta & 0x0F);
 		}else{
 			$meta = (($meta << 4) & 0xF0) | ($old_meta & 0x0F);
 		}
-		$this->map[$X][$Z][1][$index]{$y >> 1} = chr($meta);
+		$this->map[$X][$Z][1][$index][$y >> 1] = chr($meta);
 	}
 
 }

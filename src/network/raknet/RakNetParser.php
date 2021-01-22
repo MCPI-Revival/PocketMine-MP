@@ -68,7 +68,7 @@ class RakNetParser{
 	
 	
 	private function feof(){
-		return !isset($this->buffer{$this->offset});
+		return !isset($this->buffer[$this->offset]);
 	}
 	
 	private function parse(){

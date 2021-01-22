@@ -703,7 +703,7 @@ class Player{
 			if(preg_match_all('#@([@A-Za-z_]{1,})#', $m, $matches, PREG_OFFSET_CAPTURE) > 0){
 				$offsetshift = 0;
 				foreach($matches[1] as $selector){
-					if($selector[0]{0} === "@"){ //Escape!
+					if($selector[0][0] === "@"){ //Escape!
 						$m = substr_replace($m, $selector[0], $selector[1] + $offsetshift - 1, strlen($selector[0]) + 1);
 						--$offsetshift;
 						continue;
@@ -1157,7 +1157,7 @@ class Player{
 									case ProtocolInfo::REQUEST_CHUNK_PACKET:
 									case ProtocolInfo::ANIMATE_PACKET:
 									case ProtocolInfo::SET_HEALTH_PACKET:
-										continue;
+										continue 2;
 								}
 							}
 							$this->received[$p->messageIndex] = true;
@@ -2013,7 +2013,7 @@ class Player{
 				$this->toCraft = array();
 				if(trim($packet->message) != "" and strlen($packet->message) <= 255){
 					$message = $packet->message;
-					if($message{0} === "/"){ //Command
+					if($message[0] === "/"){ //Command
 						$this->server->api->console->run(substr($message, 1), $this);
 					}else{
 						$data = array("player" => $this, "message" => $message);

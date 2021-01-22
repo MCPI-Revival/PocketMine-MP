@@ -45,7 +45,7 @@ class NBT{
 	}
 	
 	private function feof(){
-		return !isset($this->binary{$this->offset});
+		return !isset($this->binary[$this->offset]);
 	}
 	
 	public function write($bin){

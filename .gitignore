@@ -2,13 +2,15 @@ players/*
 worlds/*
 plugins/*
 logs/*
-bin/*
 .idea/*
 *.log
 *.pmf
 *.txt
 server.properties
 
+# Install
+php/
+install_data/
 
 ############
 ## Windows

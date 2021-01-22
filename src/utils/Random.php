@@ -34,7 +34,7 @@ class Random{
 			$state[] = $i;
 		}
 		for($i = $j = 0; $i < 256; ++$i){
-			$j = ($j + ord($seed{$i & 0x03}) + $state[$i]) & 0xFF;
+			$j = ($j + ord($seed[$i & 0x03]) + $state[$i]) & 0xFF;
 			$state[$i] ^= $state[$j];
 			$state[$j] ^= $state[$i];
 			$state[$i] ^= $state[$j];

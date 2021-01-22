@@ -166,6 +166,6 @@ abstract class RakNetDataPacket extends stdClass{
 	}
 	
 	protected function feof(){
-		return !isset($this->buffer{$this->offset});
+		return !isset($this->buffer[$this->offset]);
 	}
 }
