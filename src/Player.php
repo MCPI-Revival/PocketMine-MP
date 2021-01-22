@@ -2176,11 +2176,7 @@ class Player{
 					if($t->data["creator"] !== $this->username){
 						$t->spawn($this);
 					}else{
-						if($d["id"] !== TILE_SIGN){
-							$t->spawn($this);
-						}else{
-							$t->setText($packet->line1, $packet->line2, $packet->line3, $packet->line4);
-						}
+						$t->setText($packet->line1, $packet->line2, $packet->line3, $packet->line4);
 					}
 				}
 				break;

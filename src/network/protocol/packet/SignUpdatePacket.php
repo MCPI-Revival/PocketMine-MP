@@ -19,7 +19,7 @@
  *
 */
 
-class ESignUpdatePacket extends RakNetDataPacket{
+class SignUpdatePacket extends RakNetDataPacket{
 	public $x;
 	public $y;
 	public $z;
@@ -37,10 +37,10 @@ class ESignUpdatePacket extends RakNetDataPacket{
 		$this->x = $this->getShort();
 		$this->y = $this->getByte();
 		$this->z = $this->getShort();
-		$this->line1 = $this->getString();
-		$this->line2 = $this->getString();
-		$this->line3 = $this->getString();
-		$this->line4 = $this->getString();
+		$this->line1 = $this->get(Utils::readLShort($this->get(2), false));
+		$this->line2 = $this->get(Utils::readLShort($this->get(2), false));
+		$this->line3 = $this->get(Utils::readLShort($this->get(2), false));
+		$this->line4 = $this->get(Utils::readLShort($this->get(2), false));
 	}
 	
 	public function encode(){
@@ -48,10 +48,10 @@ class ESignUpdatePacket extends RakNetDataPacket{
 		$this->putShort($this->x);
 		$this->putByte($this->y);
 		$this->putShort($this->z);
-		$this->putString($this->line1);
-		$this->putString($this->line2);
-		$this->putString($this->line3);
-		$this->putString($this->line4);
+		$this->put(Utils::writeLShort(strlen($this->line1)).$this->line1);
+		$this->put(Utils::writeLShort(strlen($this->line2)).$this->line2);
+		$this->put(Utils::writeLShort(strlen($this->line3)).$this->line3);
+		$this->put(Utils::writeLShort(strlen($this->line4)).$this->line4);
 	}
 
 }

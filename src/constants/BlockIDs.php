@@ -149,14 +149,6 @@ define("SANDSTONE_STAIRS", 128);
 
 define("QUARTZ_BLOCK", 155);
 define("QUARTZ_STAIRS", 156);
-define("DOUBLE_WOOD_SLAB", 157);
-define("DOUBLE_WOODEN_SLAB", 157);
-define("DOUBLE_WOOD_SLABS", 157);
-define("DOUBLE_WOODEN_SLABS", 157);
-define("WOOD_SLAB", 158);
-define("WOODEN_SLAB", 158);
-define("WOOD_SLABS", 158);
-define("WOODEN_SLABS", 158);
 
 define("COAL_BLOCK", 173);
 
