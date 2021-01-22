@@ -22,7 +22,6 @@
 class ContainerSetContentPacket extends RakNetDataPacket{
 	public $windowid;
 	public $slots = array();
-	public $hotbar = array();
 	
 	public function pid(){
 		return ProtocolInfo::CONTAINER_SET_CONTENT_PACKET;
@@ -34,12 +33,6 @@ class ContainerSetContentPacket extends RakNetDataPacket{
 		for($s = 0; $s < $count and !$this->feof(); ++$s){
 			$this->slots[$s] = $this->getSlot();
 		}
-		if($this->windowid === 0){
-			$count = $this->getShort();
-			for($s = 0; $s < $count and !$this->feof(); ++$s){
-				$this->hotbar[$s] = $this->getInt();
-			}
-		}
 	}
 	
 	public function encode(){
@@ -48,12 +41,6 @@ class ContainerSetContentPacket extends RakNetDataPacket{
 		$this->putShort(count($this->slots));
 		foreach($this->slots as $slot){
 			$this->putSlot($slot);
-		}
-		if($this->windowid === 0 and count($this->hotbar) > 0){
-			$this->putShort(count($this->hotbar));
-			foreach($this->hotbar as $slot){
-				$this->putInt($slot);
-			}
 		}
 	}
 

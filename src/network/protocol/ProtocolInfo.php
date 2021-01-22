@@ -22,7 +22,7 @@
 
 class ProtocolInfo{
 
-	const CURRENT_PROTOCOL = 14;
+	const CURRENT_PROTOCOL = 9;
 	
 	
 
@@ -57,44 +57,41 @@ class ProtocolInfo{
 	const MOVE_ENTITY_PACKET = 0x90;
 
 	const MOVE_ENTITY_PACKET_POSROT = 0x93;
-	const ROTATE_HEAD_PACKET = 0x94;
-	const MOVE_PLAYER_PACKET = 0x95;
-	//const PLACE_BLOCK_PACKET = 0x96;
-	const REMOVE_BLOCK_PACKET = 0x97;
-	const UPDATE_BLOCK_PACKET = 0x98;
-	const ADD_PAINTING_PACKET = 0x99;
-	const EXPLODE_PACKET = 0x9a;
-	const LEVEL_EVENT_PACKET = 0x9b;
-	const TILE_EVENT_PACKET = 0x9c;
-	const ENTITY_EVENT_PACKET = 0x9d;
-	const REQUEST_CHUNK_PACKET = 0x9e;
-	const CHUNK_DATA_PACKET = 0x9f;
-	const PLAYER_EQUIPMENT_PACKET = 0xa0;
-	const PLAYER_ARMOR_EQUIPMENT_PACKET = 0xa1;
-	const INTERACT_PACKET = 0xa2;
-	const USE_ITEM_PACKET = 0xa3;
-	const PLAYER_ACTION_PACKET = 0xa4;
+	const MOVE_PLAYER_PACKET = 0x94;
+	//const PLACE_BLOCK_PACKET = 0x95;
+	const REMOVE_BLOCK_PACKET = 0x96;
+	const UPDATE_BLOCK_PACKET = 0x97;
+	const ADD_PAINTING_PACKET = 0x98;
+	const EXPLODE_PACKET = 0x99;
+	const LEVEL_EVENT_PACKET = 0x9a;
+	const TILE_EVENT_PACKET = 0x9b;
+	const ENTITY_EVENT_PACKET = 0x9c;
+	const REQUEST_CHUNK_PACKET = 0x9d;
+	const CHUNK_DATA_PACKET = 0x9e;
+	const PLAYER_EQUIPMENT_PACKET = 0x9f;
+	const PLAYER_ARMOR_EQUIPMENT_PACKET = 0xa0;
+	const INTERACT_PACKET = 0xa1;
+	const USE_ITEM_PACKET = 0xa2;
+	const PLAYER_ACTION_PACKET = 0xa3;
 
-	const HURT_ARMOR_PACKET = 0xa6;
-	const SET_ENTITY_DATA_PACKET = 0xa7;
-	const SET_ENTITY_MOTION_PACKET = 0xa8;
-	//const SET_ENTITY_LINK_PACKET = 0xa9;
-	const SET_HEALTH_PACKET = 0xaa;
-	const SET_SPAWN_POSITION_PACKET = 0xab;
-	const ANIMATE_PACKET = 0xac;
-	const RESPAWN_PACKET = 0xad;
-	const SEND_INVENTORY_PACKET = 0xae;
-	const DROP_ITEM_PACKET = 0xaf;
-	const CONTAINER_OPEN_PACKET = 0xb0;
-	const CONTAINER_CLOSE_PACKET = 0xb1;
-	const CONTAINER_SET_SLOT_PACKET = 0xb2;
-	const CONTAINER_SET_DATA_PACKET = 0xb3;
-	const CONTAINER_SET_CONTENT_PACKET = 0xb4;
-	//const CONTAINER_ACK_PACKET = 0xb5;
-	const CHAT_PACKET = 0xb6;
-	const ADVENTURE_SETTINGS_PACKET = 0xb7;
-	const ENTITY_DATA_PACKET = 0xb8;
-	//const PLAYER_INPUT_PACKET = 0xb9;
+	const HURT_ARMOR_PACKET = 0xa5;
+	const SET_ENTITY_DATA_PACKET = 0xa6;
+	const SET_ENTITY_MOTION_PACKET = 0xa7;
+	const SET_HEALTH_PACKET = 0xa8;
+	const SET_SPAWN_POSITION_PACKET = 0xa0;
+	const ANIMATE_PACKET = 0xaa;
+	const RESPAWN_PACKET = 0xab;
+	const SEND_INVENTORY_PACKET = 0xac;
+	const DROP_ITEM_PACKET = 0xad;
+	const CONTAINER_OPEN_PACKET = 0xae;
+	const CONTAINER_CLOSE_PACKET = 0xaf;
+	const CONTAINER_SET_SLOT_PACKET = 0xb0;
+	const CONTAINER_SET_DATA_PACKET = 0xb1;
+	const CONTAINER_SET_CONTENT_PACKET = 0xb2;
+	//const CONTAINER_ACK_PACKET = 0xb3;
+	const CHAT_PACKET = 0xb4;
+	const SIGN_UPDATE_PACKET = 0xb5;
+	const ADVENTURE_SETTINGS_PACKET = 0xb6;
 	
 	public static $packets = array(
 		-1 => "UnknownPacket",
@@ -118,7 +115,6 @@ class ProtocolInfo{
 		ProtocolInfo::TAKE_ITEM_ENTITY_PACKET => "TakeItemEntityPacket",
 		ProtocolInfo::MOVE_ENTITY_PACKET => "MoveEntityPacket",
 		ProtocolInfo::MOVE_ENTITY_PACKET_POSROT => "MoveEntityPacket_PosRot",
-		ProtocolInfo::ROTATE_HEAD_PACKET => "RotateHeadPacket",
 		ProtocolInfo::MOVE_PLAYER_PACKET => "MovePlayerPacket",
 		ProtocolInfo::REMOVE_BLOCK_PACKET => "RemoveBlockPacket",
 		ProtocolInfo::UPDATE_BLOCK_PACKET => "UpdateBlockPacket",
@@ -150,7 +146,7 @@ class ProtocolInfo{
 		ProtocolInfo::CONTAINER_SET_CONTENT_PACKET => "ContainerSetContentPacket",
 		ProtocolInfo::CHAT_PACKET => "ChatPacket",
 		ProtocolInfo::ADVENTURE_SETTINGS_PACKET => "AdventureSettingsPacket",
-		ProtocolInfo::ENTITY_DATA_PACKET => "EntityDataPacket",
+		ProtocolInfo::SIGN_UPDATE_PACKET => "SignUpdatePacket",
 	);
 
 }

@@ -23,23 +23,15 @@ class Item{
 	public static $class = array(
 		SUGARCANE => "SugarcaneItem",	
 		WHEAT_SEEDS => "WheatSeedsItem",
-		PUMPKIN_SEEDS => "PumpkinSeedsItem",
 		MELON_SEEDS => "MelonSeedsItem",
 		MUSHROOM_STEW => "MushroomStewItem",
-		BEETROOT_SOUP => "BeetrootSoupItem",
-		CARROT => "CarrotItem",
-		POTATO => "PotatoItem",
-		BEETROOT_SEEDS => "BeetrootSeedsItem",
 		SIGN => "SignItem",
 		WOODEN_DOOR => "WoodenDoorItem",
-		BUCKET => "BucketItem",
 		IRON_DOOR => "IronDoorItem",
-		CAKE => "CakeItem",
 		BED => "BedItem",
 		PAINTING => "PaintingItem",
 		COAL => "CoalItem",
 		APPLE => "AppleItem",
-		SPAWN_EGG => "SpawnEggItem",
 		DIAMOND => "DiamondItem",
 		STICK => "StickItem",
 		BOWL => "BowlItem",
@@ -111,9 +103,6 @@ class Item{
 	final public function getFuelTime(){
 		if(!isset(FuelData::$duration[$this->id])){
 			return false;
-		}
-		if($this->id !== BUCKET or $this->meta === 10){
-			return FuelData::$duration[$this->id];
 		}
 		return false;
 	}

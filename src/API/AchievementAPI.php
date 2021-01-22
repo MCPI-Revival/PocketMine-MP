@@ -67,12 +67,6 @@ class AchievementAPI{
 				"buildHoe",
 			),
 		),
-		"bakeCake" => array(
-			"name" => "The Lie",
-			"requires" => array(
-				"buildHoe",
-			),
-		),
 		"buildBetterPickaxe" => array(
 			"name" => "Getting an Upgrade",
 			"requires" => array(

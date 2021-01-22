@@ -69,9 +69,9 @@ define("LOG", true);
 define("START_TIME", microtime(true));
 define("MAJOR_VERSION", "Alpha_1.3.12");
 define("CODENAME", "甘い(Amai)ビートルート(Beetroot)");
-define("CURRENT_MINECRAFT_VERSION", "v0.8.1 alpha");
+define("CURRENT_MINECRAFT_VERSION", "v0.6.1 alpha");
 define("CURRENT_API_VERSION", 12);
-define("CURRENT_PHP_VERSION", "5.5");
+define("CURRENT_PHP_VERSION", "7.4");
 $gitsha1 = false;
 if(file_exists(FILE_PATH.".git/refs/heads/master")){ //Found Git information!
 	define("GIT_COMMIT", strtolower(trim(file_get_contents(FILE_PATH.".git/refs/heads/master"))));

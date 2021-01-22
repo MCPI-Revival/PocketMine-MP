@@ -435,7 +435,7 @@ class Entity extends Position{
 							$support = true;
 							$isFlying = false;
 							break;
-						}elseif(($b instanceof LiquidBlock) or $b->getID() === COBWEB or $b->getID() === LADDER or $b->getID() === FENCE or $b->getID() === STONE_WALL){
+						}elseif(($b instanceof LiquidBlock) or $b->getID() === COBWEB or $b->getID() === LADDER or $b->getID() === FENCE){
 							$isFlying = false;
 						}
 					}
@@ -579,7 +579,6 @@ class Entity extends Position{
 						$pk->z = $this->z;
 						$pk->yaw = $this->yaw;
 						$pk->pitch = $this->pitch;
-						$pk->bodyYaw = $this->yaw;
 						$this->server->api->player->broadcastPacket($players, $pk);
 					}else{
 						$pk = new MoveEntityPacket_PosRot;

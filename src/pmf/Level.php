@@ -409,10 +409,11 @@ class PMFLevel extends PMF{
 		}
 		$index = $this->getIndex($X, $Z);
 		if(!isset($this->chunks[$index]) or $this->chunks[$index] === false){
-			if($this->loadChunk($X, $Z) === false){
+			if($this->loadChunk($X, $Z) === false or is_bool($this->chunks[$index])){
 				return array(AIR, 0);
 			}
-		}elseif($this->chunks[$index][$Y] === false){
+		}
+		if(is_bool($this->chunks[$index][$Y])){
 			return array(AIR, 0);
 		}
 		$aX = $x - ($X << 4);

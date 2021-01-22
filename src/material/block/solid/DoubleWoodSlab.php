@@ -23,10 +23,7 @@ class DoubleWoodSlabBlock extends SolidBlock{
 	public function __construct($meta = 0){
 		parent::__construct(DOUBLE_WOOD_SLAB, $meta, "Double Wooden Slab");
 		$names = array(
-			0 => "Oak",
-			1 => "Spruce",
-			2 => "Birch",
-			3 => "Jungle",
+			0 => "Oak"
 		);
 		$this->name = "Double " . $names[$this->meta & 0x07] . " Wooden Slab";
 		$this->hardness = 15;

@@ -35,12 +35,6 @@ class RedstoneOreBlock extends SolidBlock{
 	}
 
 	public function getDrops(Item $item, Player $player){
-		if($item->isPickaxe() >= 2){
-			return array(
-				array(REDSTONE_DUST, 0, mt_rand(4, 5)),
-			);
-		}else{
-			return array();
-		}
+		return array();
 	}
 }

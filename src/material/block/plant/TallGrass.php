@@ -46,11 +46,7 @@ class TallGrassBlock extends FlowableBlock{
 		$drops = array();
 		$possibleDrops = array(
 			array(WHEAT_SEEDS, 0, 1),
-			array(CARROT, 0, 1),
-			array(POTATO, 0, 1),
-			array(BEETROOT_SEEDS, 0, 1),
 			array(MELON_SEEDS, 0, 1),
-			array(PUMPKIN_SEEDS, 0, 1),
 			0,
 			0,
 			0,

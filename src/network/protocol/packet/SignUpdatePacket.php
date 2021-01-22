@@ -19,21 +19,28 @@
  *
 */
 
-class EntityDataPacket extends RakNetDataPacket{
+class ESignUpdatePacket extends RakNetDataPacket{
 	public $x;
 	public $y;
 	public $z;
-	public $namedtag;
+
+	public $line1;
+	public $line2;
+	public $line3;
+	public $line4;
 	
 	public function pid(){
-		return ProtocolInfo::ENTITY_DATA_PACKET;
+		return ProtocolInfo::SIGN_UPDATE_PACKET;
 	}
 	
 	public function decode(){
 		$this->x = $this->getShort();
 		$this->y = $this->getByte();
 		$this->z = $this->getShort();
-		$this->namedtag = $this->get(true);
+		$this->line1 = $this->getString();
+		$this->line2 = $this->getString();
+		$this->line3 = $this->getString();
+		$this->line4 = $this->getString();
 	}
 	
 	public function encode(){
@@ -41,7 +48,10 @@ class EntityDataPacket extends RakNetDataPacket{
 		$this->putShort($this->x);
 		$this->putByte($this->y);
 		$this->putShort($this->z);
-		$this->put($this->namedtag);
+		$this->putString($this->line1);
+		$this->putString($this->line2);
+		$this->putString($this->line3);
+		$this->putString($this->line4);
 	}
 
 }

@@ -29,7 +29,6 @@ class DoubleSlabBlock extends SolidBlock{
 			3 => "Cobblestone",
 			4 => "Brick",
 			5 => "Stone Brick",
-			6 => "Quartz",
 		);
 		$this->name = "Double " . $names[$this->meta & 0x07] . " Slab";
 		$this->hardness = 30;

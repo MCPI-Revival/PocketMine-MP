@@ -96,13 +96,8 @@ define("PAINTING", 321);
 define("GOLDEN_APPLE", 322);
 define("SIGN", 323);
 define("WOODEN_DOOR", 324);
-define("BUCKET", 325);
-
-define("MINECART", 329);
 
 define("IRON_DOOR", 330);
-define("REDSTONE", 331);
-define("REDSTONE_DUST", 331);
 define("SNOWBALL", 332);
 
 define("LEATHER", 334);
@@ -126,7 +121,6 @@ define("GLOWSTONE_DUST", 348);
 define("DYE", 351);
 define("BONE", 352);
 define("SUGAR", 353);
-define("CAKE", 354);
 define("BED", 355);
 
 
@@ -136,7 +130,6 @@ define("BED", 355);
 define("SHEARS", 359);
 define("MELON", 360);
 define("MELON_SLICE", 360);
-define("PUMPKIN_SEEDS", 361);
 define("MELON_SEEDS", 362);
 define("RAW_BEEF", 363);
 define("STEAK", 364);
@@ -145,23 +138,8 @@ define("COOKED_BEEF", 364);
 define("RAW_CHICKEN", 365);
 define("COOKED_CHICKEN", 366);
 
-define("SPAWN_EGG", 383);
-
-define("CARROT", 391);
-define("CARROTS", 391);
-define("POTATO", 392);
-define("POTATOES", 392);//@shoghicp Why the heck do we need plural redundant Item ID here????
-define("BAKED_POTATO", 393);
-define("BAKED_POTATOES", 393);
-
-define("PUMPKIN_PIE", 400);
-
 define("NETHER_BRICK", 405);
 define("QUARTZ", 406);
 define("NETHER_QUARTZ", 406);
 
 define("CAMERA", 456);
-define("BEETROOT", 457);
-define("BEETROOT_SEEDS", 458);
-define("BEETROOT_SEED", 458);
-define("BEETROOT_SOUP", 459);
