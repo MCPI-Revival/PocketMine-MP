@@ -17,9 +17,11 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```	
 
-__PocketMine-MP is a Server for Minecraft Pocket Edition__. It has a Plugin API that enables a developer to extend it and add new features, or change default ones.
+PocketMine-MP is a Server for Minecraft Pocket Edition. It has a Plugin API that enables a developer to extend it and add new features, or change default ones. The entire server is written in PHP, and has been tested, profiled and optimized to run smoothly.
 
-The entire server is done in PHP, and has been tested, profiled and optimized to run smoothly.
+This is a fork of the [v1.2.2 Alpha](https://github.com/PocketMine-MP/PocketMine-MP/releases/Alpha_1.2.2) release, the only compatible with all the game modes of Minecraft Pi, to enchance and extend the compatibility with MCPI and its mods. It has build script changes allowing it to be run on modern OSes.
+
+For installation and useage instructions, see https://mcpi.tk/howto/creating-servers.html and scroll down to the `PocketMine-MP` secton.
 
 ### [Homepage](http://www.pocketmine.net/)
 
