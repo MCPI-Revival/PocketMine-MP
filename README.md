@@ -1,6 +1,6 @@
 ![](http://shoghicp.github.com/PocketMine-MP/favicon.png)
 
-# PocketMine-MP [![Build Status](https://travis-ci.org/shoghicp/PocketMine-MP.png?branch=master)](https://travis-ci.org/shoghicp/PocketMine-MP)
+# PocketMine-MP
 
 ```
 This program is free software: you can redistribute it and/or modify
