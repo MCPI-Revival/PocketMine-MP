@@ -76,7 +76,7 @@ class MinecraftInterface{
 		if($len === false){
 			return false;
 		}
-		$pid = ord($buf{0});
+		$pid = ord($buf[0]);
 		$struct = $this->getStruct($pid);
 		if($struct === false){
 			console("[ERROR] Unknown Packet ID 0x".Utils::strToHex(chr($pid)), true, true, 0);
@@ -94,7 +94,7 @@ class MinecraftInterface{
 	}
 
 	public function popPacket(){
-		if(count($this->data) > 0){
+		if($this->data && count($this->data) > 0){
 			$p = array_shift($this->data);
 			if(isset($p[1]["packets"]) and is_array($p[1]["packets"])){
 				foreach($p[1]["packets"] as $d){

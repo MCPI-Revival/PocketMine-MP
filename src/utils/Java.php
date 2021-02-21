@@ -54,7 +54,7 @@ class Java_String{
 			trigger_error("Undefined offset $index", E_USER_WARNING);
 			return false;
 		}
-		return $this->value{$index};
+		return $this->value[$index];
 	}
 
 	public function hashCode(){
@@ -117,7 +117,7 @@ class Java_Random{
 		if($max < $bytes){
 			$random = $this->next(32)->toBytes();
 			for($j = $max; $j < $bytes; ++$j){
-				$b .= $random{$j-$max};
+				$b .= $random[$j-$max];
 			}
 		}
 		return $b;

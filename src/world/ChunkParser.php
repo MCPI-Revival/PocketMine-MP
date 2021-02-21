@@ -41,12 +41,12 @@ class ChunkParser{
 		$chunkCnt = 0;
 		for($offset = 0; $offset < 0x1000; $offset += 4){
 			$data = substr($this->raw, $offset, 4);
-			$sectors = ord($data{0});
+			$sectors = ord($data[0]);
 			if($sectors === 0){
 				continue;
 			}
-			$x = ord($data{1});
-			$z = ord($data{2});
+			$x = ord($data[1]);
+			$z = ord($data[2]);
 			$X = $chunkCnt % 16;
 			$Z = $chunkCnt >> 4;
 			//$unused = ord($data{3});
@@ -73,20 +73,20 @@ class ChunkParser{
 			$this->raw = file_get_contents($file);
 		}
 		$this->file = $file;
-		$this->chunkLength = $this->sectorLength * ord($this->raw{0});
+		$this->chunkLength = $this->sectorLength * ord($this->raw[0]);
 		return true;
 	}
 
 	public function loadRaw($raw, $file){
 		$this->file = $file;
 		$this->raw = $raw;
-		$this->chunkLength = $this->sectorLength * ord($this->raw{0});
+		$this->chunkLength = $this->sectorLength * ord($this->raw[0]);
 		return true;
 	}
 
 	private function getOffsetPosition($X, $Z){
         $data = substr($this->raw, ($X << 2) + ($Z << 7), 4); //$X * 4 + $Z * 128
-		return array(ord($data{0}), ord($data{1}), ord($data{2}), ord($data{3}));
+		return array(ord($data[0]), ord($data[1]), ord($data[2]), ord($data[3]));
     }
 
 	private function getOffset($X, $Z, $sectors = 21){
@@ -185,7 +185,7 @@ class ChunkParser{
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
 		for($y = 127; $y <= 0; --$y){
-			if($this->map[$X][$Z][0][$index]{$y} !== "\x00"){
+			if($this->map[$X][$Z][0][$index][$y] !== "\x00"){
 				break;
 			}
 		}
@@ -201,8 +201,8 @@ class ChunkParser{
 		$aX = $x - ($X << 4);
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
-		$block = ord($this->map[$X][$Z][0][$index]{$y});
-		$meta = ord($this->map[$X][$Z][1][$index]{$y >> 1});
+		$block = ord($this->map[$X][$Z][0][$index][$y]);
+		$meta = ord($this->map[$X][$Z][1][$index][$y >> 1]);
 		if(($y & 1) === 0){
 			$meta = $meta & 0x0F;
 		}else{
@@ -225,14 +225,14 @@ class ChunkParser{
 		$aX = $x - ($X << 4);
 		$aZ = $z - ($Z << 4);
 		$index = $aZ + ($aX << 4);
-		$this->map[$X][$Z][0][$index]{$y} = chr($block);
-		$old_meta = ord($this->map[$X][$Z][1][$index]{$y >> 1});
+		$this->map[$X][$Z][0][$index][$y] = chr($block);
+		$old_meta = ord($this->map[$X][$Z][1][$index][$y >> 1]);
 		if(($y & 1) === 0){
 			$meta = ($old_meta & 0xF0) | ($meta & 0x0F);
 		}else{
 			$meta = (($meta << 4) & 0xF0) | ($old_meta & 0x0F);
 		}
-		$this->map[$X][$Z][1][$index]{$y >> 1} = chr($meta);
+		$this->map[$X][$Z][1][$index][$y >> 1] = chr($meta);
 	}
 
 }

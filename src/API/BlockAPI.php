@@ -271,7 +271,7 @@ class BlockAPI{
 		}elseif($hand->place($this, $item, $player, $block, $target, $face, $fx, $fy, $fz) === false){
 			return $this->cancelAction($block, $player);
 		}
-		if($hand->getID() === SIGN_POST or $hand->getID() === WALL_POST){
+		if($hand->getID() === SIGN_POST or $hand->getID() === WALL_SIGN){
 			$t = $this->server->api->tileentity->addSign($block->x, $block->y, $block->z);
 			$t->data["creator"] = $player->username;
 		}
@@ -661,7 +661,7 @@ class BlockAPI{
 				}
 				break;
 		}
-		if($type === BLOCK_TYPE_SCHEDULED){
+		if($type === BLOCK_UPDATE_SCHEDULED){
 			$type = BLOCK_UPDATE_WEAK;
 		}
 		if($changed === true){

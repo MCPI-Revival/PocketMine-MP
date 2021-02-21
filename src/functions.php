@@ -129,7 +129,7 @@ function arguments ( $args ){
 		$args = array();
 	}
     array_shift( $args );
-    $args = join( $args, ' ' );
+    $args = join( ' ', $args );
 
     preg_match_all('/ (--[\w\-]+ (?:[= ] [^-]+ [^\s-] )? ) | (-\w+) | (\w+) /x', $args, $match );
     $args = array_shift( $match );
@@ -208,7 +208,7 @@ function console($message, $EOL = true, $log = true, $level = 1){
 
 function fatal_handler($errno, $errstr, $errfile, $errline){
 	console("[ERROR] A level ".$errno." error happened: \"$errstr\" in \"$errfile\" at line $errline", true, true, 0);
-	return false;
+	return true;
 }
 
 function logg($message, $name, $EOL = true, $level = 2, $close = false){

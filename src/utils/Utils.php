@@ -157,21 +157,21 @@ class Utils extends Thread{
 		return BlockAPI::getItem(
 			Utils::readShort(substr($str, 0, 2), false),
 			Utils::readShort(substr($str, 3, 2), false),
-			ord($str{2})
+			ord($str[2])
 		);
 	}
 
 	public static function readMetadata($value, $types = false){
 		$offset = 0;
 		$m = array();
-		$b = ord($value{$offset});
+		$b = ord($value[$offset]);
 		++$offset;
 		while($b !== 127){
 			$bottom = $b & 0x1F;
 			$type = $b >> 5;
 			switch($type){
 				case 0:
-					$r = Utils::readByte($value{$offset});
+					$r = Utils::readByte($value[$offset]);
 					++$offset;
 					break;
 				case 1:
@@ -196,7 +196,7 @@ class Utils extends Thread{
 					$r = array();
 					$r[] = Utils::readLShort(substr($value, $offset, 2));
 					$offset += 2;
-					$r[] = ord($value{$offset});
+					$r[] = ord($value[$offset]);
 					++$offset;
 					$r[] = Utils::readLShort(substr($value, $offset, 2));
 					$offset += 2;
@@ -215,7 +215,7 @@ class Utils extends Thread{
 			}else{
 				$m[$bottom] = $r;
 			}
-			$b = ord($value{$offset});
+			$b = ord($value[$offset]);
 			++$offset;
 		}
 		return $m;
@@ -248,7 +248,7 @@ class Utils extends Thread{
 		$secureValue = "";
 		$rounds = 0;
 		$drop = 0;
-		while(!isset($output{$length - 1})){
+		while(!isset($output[$length - 1])){
 			//some entropy, but works ^^
 			$weakEntropy = array(
 				is_array($startEntropy) ? implode($startEntropy):$startEntropy,
@@ -264,7 +264,7 @@ class Utils extends Thread{
 				(string) memory_get_usage(),
 				php_uname(),
 				phpversion(),
-				extension_loaded("gmp") ? gmp_strval(gmp_random(4)):microtime(),
+				extension_loaded("gmp") ? gmp_strval(gmp_random_bits(4)):microtime(),
 				zend_version(),
 				(string) getmypid(),
 				(string) mt_rand(),
@@ -302,14 +302,14 @@ class Utils extends Thread{
 				//Von Neumann randomness extractor, increases entropy
 				$len = strlen($strongEntropy) * 8;
 				for($i = 0; $i < $len; $i += 2){
-					$a = ord($strongEntropy{$i >> 3});
+					$a = ord($strongEntropy[$i >> 3]);
 					$b = 1 << ($i % 8);
 					$c = 1 << (($i % 8) + 1);
 					$b = ($a & $b) === $b ? "1":"0";
 					$c = ($a & $c) === $c ? "1":"0";
 					if($b !== $c){
 						$secureValue .= $b;
-						if(isset($secureValue{7})){
+						if(isset($secureValue[7])){
 							$value .= chr(bindec($secureValue));
 							$secureValue = "";
 						}
@@ -408,7 +408,7 @@ class Utils extends Thread{
 	}
 
 	public static function readByte($c, $signed = true){
-		$b = ord($c{0});
+		$b = ord($c[0]);
 		if($signed === true and ($b & 0x80) === 0x80){ //calculate Two's complement
 			$b = -0x80 + ($b & 0x7f);
 		}

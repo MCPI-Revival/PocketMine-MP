@@ -161,8 +161,9 @@ develop-eggs
 # Installer logs
 pip-log.txt
 
-# PHP Build
-/php5
+# Install
+php/
+install_data/
 
 # Unit test / coverage reports
 .coverage

@@ -539,7 +539,7 @@ class Player{
 					}
 					break;
 				case 0xc0: //ACK
-					$diff = $data[2] - $this->counter[2];
+					$diff = (int) $data[2] - (int) $this->counter[2];
 					if($diff > 8){ //Packet recovery
 						$this->directDataPacket($this->recovery[$data[2]]["id"], $this->recovery[$data[2]]);
 					}
@@ -548,7 +548,7 @@ class Player{
 					unset($this->recovery[$data[2]]);
 
 					if(isset($data[3])){
-						$diff = $data[3] - $this->counter[2];
+						$diff = (int) $data[3] - (int) $this->counter[2];
 						if($diff > 8){ //Packet recovery
 							$this->directDataPacket($this->recovery[$data[3]]["id"], $this->recovery[$data[3]]);
 						}
@@ -904,7 +904,7 @@ class Player{
 								break;
 							}
 							$message = $data["message"];
-							if($message{0} === "/"){ //Command
+							if($message[0] === "/"){ //Command
 								$this->server->api->console->run(substr($message, 1), $this);
 							}else{
 								if($this->server->api->dhandle("player.chat", array("player" => $this, "message" => $message)) !== false){
@@ -959,7 +959,7 @@ class Player{
 							}
 							$tile->setSlot($data["slot"], $item);
 							break;
-						case MC_SEND_INVENTORY: //TODO, Mojang, enable this ´^_^`
+						case MC_SEND_INVENTORY: //TODO, Mojang, enable this ï¿½^_^`
 							break;
 						default:
 							console("[DEBUG] Unhandled 0x".dechex($data["id"])." Data Packet for Client ID ".$this->clientID.": ".print_r($data, true), true, true, 2);
