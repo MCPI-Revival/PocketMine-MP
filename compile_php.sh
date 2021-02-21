@@ -65,7 +65,7 @@ echo ' done!'
 
 # GMP
 echo -n "[GMP] downloading ${GMP_VERSION}..."
-wget "ftp://ftp.gmplib.org/pub/gmp-${GMP_VERSION}/gmp-${GMP_VERSION}.tar.bz2" -q -O - | tar -jx >> "${DIR}/install.log" 2>&1
+wget "https://gmplib.org/download/gmp/gmp-${GMP_VERSION}.tar.xz" -q -O - | tar -Jx >> "${DIR}/install.log" 2>&1
 mv "gmp-${GMP_VERSION}" gmp
 echo -n ' checking...'
 cd gmp
