@@ -682,7 +682,7 @@ class Player{
 						return;
 					}else{
 						$message = $data->get();
-						$this->sendChat(preg_replace('/\x1b\[[0-9;]*m/', "", $message["message"]), $message["player"]); //Remove ANSI codes from chat
+						$this->sendChat(preg_replace('/\x1b\[[0-9;]*m/', "", $message)); //Remove ANSI codes from chat
 					}
 				}else{
 					$message = (string) $data;
@@ -694,9 +694,8 @@ class Player{
 
     /**
      * @param string $message
-     * @param string $author
      */
-    public function sendChat($message, $author = ""){
+    public function sendChat($message){
 		$mes = explode("\n", $message);
 		foreach($mes as $m){
 			if(preg_match_all('#@([@A-Za-z_]{1,})#', $m, $matches, PREG_OFFSET_CAPTURE) > 0){
@@ -1952,7 +1951,7 @@ class Player{
 					$this->entity->updateMetadata();
 				}
 				break;
-			case ProtocolInfo::MESSAGE_PACKET:
+			case ProtocolInfo::CHAT_PACKET:
 				if($this->spawned === false){
 					break;
 				}
