@@ -427,7 +427,7 @@ class Player{
 	public function sendChat($message){
 		$mes = explode("\n", $message);
 		foreach($mes as $m){
-			$this->dataPacket(MC_CHAT, array(
+			$this->dataPacket(MC_MESSAGE, array(
 				"message" => str_replace("@username", $this->username, $m),
 			));	
 		}
@@ -729,7 +729,7 @@ class Player{
 										$this->eventHandler("Your connection is bad, you may experience lag and slow map loading.", "server.chat");
 									}
 									
-									if($this->iusername === "steve" or $this->iusername === "stevie"){
+									if($this->iusername === "steve" or $this->iusername === "stevie"or $this->iusername === "stevepi"){
 										$this->eventHandler("You're using the default username. Please change it on the Minecraft PE settings.", "server.chat");
 									}
 									$this->sendInventory();
@@ -908,7 +908,7 @@ class Player{
 								$this->server->api->console->run(substr($message, 1), $this);
 							}else{
 								if($this->server->api->dhandle("player.chat", array("player" => $this, "message" => $message)) !== false){
-									$this->server->api->send($this, $message);
+									$this->server->api->chat->send($this, $message);
 								}
 							}
 							break;

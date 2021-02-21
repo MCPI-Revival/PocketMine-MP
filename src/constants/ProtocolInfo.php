@@ -38,7 +38,7 @@ define("MC_DISCONNECT", 0x15);
 define("MC_LOGIN", 0x82);
 define("MC_LOGIN_STATUS", 0x83);
 define("MC_READY", 0x84);
-define("MC_CHAT", 0x85);
+define("MC_MESSAGE", 0x85);
 define("MC_SET_TIME", 0x86);
 define("MC_START_GAME", 0x87);
 define("MC_ADD_MOB", 0x88);
@@ -84,7 +84,7 @@ define("MC_CONTAINER_SET_SLOT", 0xb0);
 //define("MC_CONTAINER_SET_DATA", 0xb1);
 //define("MC_CONTAINER_SET_CONTENT", 0xb2);
 //define("MC_CONTAINER_ACK", 0xb3);
-define("MC_CLIENT_MESSAGE", 0xb4);
+define("MC_CHAT", 0xb4);
 define("MC_SIGN_UPDATE", 0xb5);
 define("MC_ADVENTURE_SETTINGS", 0xb6);
 
@@ -105,7 +105,7 @@ class Protocol{
 		MC_LOGIN => "Login",
 		MC_LOGIN_STATUS => "Login Status",
 		MC_READY => "Ready",
-		MC_CHAT => "Chat",
+		MC_MESSAGE => "Message",
 		MC_SET_TIME => "Set Time",
 		MC_START_GAME => "Start Game",
 
@@ -151,7 +151,7 @@ class Protocol{
 		MC_CONTAINER_CLOSE => "Close Container",
 		MC_CONTAINER_SET_SLOT => "Set Container Slot",
 
-		MC_CLIENT_MESSAGE => "Client Message",
+		MC_CHAT => "Chat",
 		MC_SIGN_UPDATE => "Sign Update",
 		MC_ADVENTURE_SETTINGS => "Adventure Settings",
 	);

@@ -161,7 +161,7 @@ class CustomPacketHandler{
 					$this->raw .= chr($this->data["status"]);
 				}
 				break;
-			case MC_CHAT:
+			case MC_MESSAGE:
 				if($this->c === false){
 					$this->data["message"] = $this->get(Utils::readShort($this->get(2), false));
 				}else{
@@ -661,7 +661,7 @@ class CustomPacketHandler{
 					$this->raw .= Utils::writeShort($this->data["meta"]);
 				}
 				break;
-			case MC_CLIENT_MESSAGE:
+			case MC_CHAT:
 				if($this->c === false){
 					$this->data["message"] = $this->get(Utils::readShort($this->get(2), false));
 				}else{
