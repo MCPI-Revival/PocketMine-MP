@@ -203,9 +203,8 @@ class ConsoleAPI{
 			$line = trim($this->loop->line);
 			$this->loop->line = false;
 			$this->run($line, "console");
-		}else{
-			$this->loop->notify();
 		}
+		$this->loop->notify();
 	}
 
 }
@@ -221,7 +220,9 @@ class ConsoleLoop extends Thread{
 		$fp = fopen("php://stdin", "r");
 		while($this->stop === false and ($line = fgets($fp)) !== false){
 			$this->line = $line;
-			$this->wait();
+			$this->synchronized(function($thread){
+				$this->wait();
+			}, $this);
 			$this->line = false;
 		}
 		exit(0);
