@@ -38,8 +38,14 @@ class ContainerSetContentPacket extends RakNetDataPacket{
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->windowid);
-		$this->putShort(count($this->slots));
+		$new_slots = array();
 		foreach($this->slots as $slot){
+			if($slot->getID() > 0 && $slot->count > 0){
+				array_push($new_slots, $slot);
+			}
+		}
+		$this->putShort(count($new_slots));
+		foreach($new_slots as $slot){
 			$this->putSlot($slot);
 		}
 	}

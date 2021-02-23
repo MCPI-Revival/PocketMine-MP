@@ -1036,6 +1036,7 @@ class Player{
 			$this->gamemode = $gm;
 			$this->sendChat("Your gamemode has been changed to ".$this->getGamemode().", you've to do a forced reconnect.\n");
 			$this->server->schedule(30, array($this, "close"), "gamemode change"); //Forces a kick
+			return;
 		}
 		$this->inventory = $inv;
 		$this->sendSettings();

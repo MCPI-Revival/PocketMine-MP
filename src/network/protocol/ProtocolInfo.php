@@ -78,7 +78,7 @@ class ProtocolInfo{
 	const SET_ENTITY_DATA_PACKET = 0xa6;
 	const SET_ENTITY_MOTION_PACKET = 0xa7;
 	const SET_HEALTH_PACKET = 0xa8;
-	const SET_SPAWN_POSITION_PACKET = 0xa0;
+	const SET_SPAWN_POSITION_PACKET = 0xa9;
 	const ANIMATE_PACKET = 0xaa;
 	const RESPAWN_PACKET = 0xab;
 	const SEND_INVENTORY_PACKET = 0xac;
