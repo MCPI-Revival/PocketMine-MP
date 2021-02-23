@@ -28,6 +28,11 @@ check automake
 check libtool
 check gcc
 check m4
+check libxml2-dev
+check pkg-config
+check libsqlite3-dev
+check zlib1g-dev
+check libcurl4-openssl-dev
 
 # Prepare
 rm -f install.log
