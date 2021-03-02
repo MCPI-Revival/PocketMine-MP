@@ -26,6 +26,7 @@ check make
 check autoconf
 check automake
 check libtool
+check libtool-bin
 check gcc
 check m4
 check libxml2-dev
